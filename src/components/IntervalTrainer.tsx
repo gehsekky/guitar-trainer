@@ -16,9 +16,9 @@ interface Round {
   interval: Interval;
 }
 
-function newRound(): Round {
+function newRound(fixedKey: Note | null): Round {
   return {
-    tonic: randomNote(),
+    tonic: fixedKey ?? randomNote(),
     octave: pick([3, 4]),
     interval: pick(INTERVALS),
   };
@@ -26,8 +26,13 @@ function newRound(): Round {
 
 type Phase = 'guessing' | 'graded';
 
-export default function IntervalTrainer() {
-  const [round, setRound] = useState<Round>(() => newRound());
+interface IntervalTrainerProps {
+  /** When set, every round uses this tonic; null = random key per round. */
+  fixedKey: Note | null;
+}
+
+export default function IntervalTrainer({ fixedKey }: IntervalTrainerProps) {
+  const [round, setRound] = useState<Round>(() => newRound(fixedKey));
   const [selected, setSelected] = useState<Interval | null>(null);
   const [phase, setPhase] = useState<Phase>('guessing');
   const [correct, setCorrect] = useState(false);
@@ -56,7 +61,7 @@ export default function IntervalTrainer() {
   }
 
   function next() {
-    const r = newRound();
+    const r = newRound(fixedKey);
     setRound(r);
     setSelected(null);
     setPhase('guessing');
