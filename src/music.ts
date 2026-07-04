@@ -200,6 +200,47 @@ export const DEGREE_INFO: Record<ScaleType, string[]> = {
   ],
 };
 
+// ---- Diatonic chords -----------------------------------------------------
+
+export interface DiatonicChord {
+  numeral: string;
+  quality: Quality;
+}
+
+// The triad quality on each scale degree, built from scale notes only.
+// Major:  I  ii  iii  IV  V  vi  vii°
+// Minor:  i  ii°  III  iv  v  VI  VII
+export const DIATONIC: Record<ScaleType, DiatonicChord[]> = {
+  major: [
+    { numeral: 'I', quality: 'major' },
+    { numeral: 'ii', quality: 'minor' },
+    { numeral: 'iii', quality: 'minor' },
+    { numeral: 'IV', quality: 'major' },
+    { numeral: 'V', quality: 'major' },
+    { numeral: 'vi', quality: 'minor' },
+    { numeral: 'vii°', quality: 'diminished' },
+  ],
+  minor: [
+    { numeral: 'i', quality: 'minor' },
+    { numeral: 'ii°', quality: 'diminished' },
+    { numeral: 'III', quality: 'major' },
+    { numeral: 'iv', quality: 'minor' },
+    { numeral: 'v', quality: 'minor' },
+    { numeral: 'VI', quality: 'major' },
+    { numeral: 'VII', quality: 'major' },
+  ],
+};
+
+/** The three notes of the diatonic triad on a scale degree (stacked thirds). */
+export function diatonicTriad(
+  root: Note,
+  type: ScaleType,
+  degree: number,
+): [Note, Note, Note] {
+  const notes = scaleNotes(root, type);
+  return [notes[degree], notes[(degree + 2) % 7], notes[(degree + 4) % 7]];
+}
+
 // ---- Random helpers -----------------------------------------------------
 
 export function randomInt(maxExclusive: number): number {

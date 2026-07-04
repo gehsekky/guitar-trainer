@@ -5,9 +5,17 @@ import SheetTrainer from './components/SheetTrainer';
 import ScaleTrainer from './components/ScaleTrainer';
 import EarTrainer from './components/EarTrainer';
 import ScaleDegreeTrainer from './components/ScaleDegreeTrainer';
+import DiatonicChordTrainer from './components/DiatonicChordTrainer';
 import './App.css';
 
-type Tab = 'neck' | 'triad' | 'sheet' | 'scale' | 'degree' | 'ear';
+type Tab =
+  | 'neck'
+  | 'triad'
+  | 'sheet'
+  | 'scale'
+  | 'degree'
+  | 'diatonic'
+  | 'ear';
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('neck');
@@ -65,6 +73,15 @@ export default function App() {
           <button
             type="button"
             role="tab"
+            aria-selected={tab === 'diatonic'}
+            className={tab === 'diatonic' ? 'tab active' : 'tab'}
+            onClick={() => setTab('diatonic')}
+          >
+            Diatonic Chords
+          </button>
+          <button
+            type="button"
+            role="tab"
             aria-selected={tab === 'ear'}
             className={tab === 'ear' ? 'tab active' : 'tab'}
             onClick={() => setTab('ear')}
@@ -80,6 +97,7 @@ export default function App() {
         {tab === 'sheet' && <SheetTrainer />}
         {tab === 'scale' && <ScaleTrainer />}
         {tab === 'degree' && <ScaleDegreeTrainer />}
+        {tab === 'diatonic' && <DiatonicChordTrainer />}
         {tab === 'ear' && <EarTrainer />}
       </main>
     </div>
