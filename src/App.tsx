@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import NeckTrainer from './components/NeckTrainer';
 import TriadTrainer from './components/TriadTrainer';
+import SheetTrainer from './components/SheetTrainer';
 import './App.css';
 
-type Tab = 'neck' | 'triad';
+type Tab = 'neck' | 'triad' | 'sheet';
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('neck');
@@ -31,10 +32,23 @@ export default function App() {
           >
             Chord Triads
           </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tab === 'sheet'}
+            className={tab === 'sheet' ? 'tab active' : 'tab'}
+            onClick={() => setTab('sheet')}
+          >
+            Sheet Music
+          </button>
         </nav>
       </header>
 
-      <main>{tab === 'neck' ? <NeckTrainer /> : <TriadTrainer />}</main>
+      <main>
+        {tab === 'neck' && <NeckTrainer />}
+        {tab === 'triad' && <TriadTrainer />}
+        {tab === 'sheet' && <SheetTrainer />}
+      </main>
     </div>
   );
 }
