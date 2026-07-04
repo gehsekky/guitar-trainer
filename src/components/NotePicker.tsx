@@ -1,4 +1,4 @@
-import { CHROMATIC, type Note } from '../music';
+import { CHROMATIC, displayNote, type Note } from '../music';
 
 interface NotePickerProps {
   /** Currently selected notes. */
@@ -55,7 +55,7 @@ export default function NotePicker({
             disabled={disabled}
             onClick={() => toggle(note)}
           >
-            {note}
+            {displayNote(note)}
           </button>
         );
       })}

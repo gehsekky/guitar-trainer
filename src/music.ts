@@ -51,6 +51,21 @@ export function noteAt(stringIndex: number, fret: number): Note {
   return CHROMATIC[(open + fret) % 12];
 }
 
+// Flat equivalents for the five accidental notes.
+const FLAT_EQUIV: Partial<Record<Note, string>> = {
+  'A#': 'B♭',
+  'C#': 'D♭',
+  'D#': 'E♭',
+  'F#': 'G♭',
+  'G#': 'A♭',
+};
+
+/** Display form of a note: naturals as-is, accidentals as "A♯/B♭". */
+export function displayNote(note: Note): string {
+  const flat = FLAT_EQUIV[note];
+  return flat ? `${note.replace('#', '♯')}/${flat}` : note;
+}
+
 // ---- Triads -------------------------------------------------------------
 
 export type Quality = 'major' | 'minor' | 'diminished' | 'augmented';

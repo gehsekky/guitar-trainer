@@ -4,6 +4,7 @@ import {
   EASY_QUALITIES,
   HARD_QUALITIES,
   QUALITY_LABEL,
+  displayNote,
   pick,
   randomInt,
   randomNote,
@@ -76,7 +77,8 @@ export default function TriadTrainer() {
     setPhase('guessing');
   }
 
-  const chordName = `${round.root} ${QUALITY_LABEL[round.quality]}`;
+  const chordName = `${displayNote(round.root)} ${QUALITY_LABEL[round.quality]}`;
+  const tonesDisplay = round.tones.map(displayNote).join(' – ');
 
   return (
     <section className="trainer">
@@ -116,9 +118,9 @@ export default function TriadTrainer() {
               >
                 {i === round.hiddenIndex
                   ? phase === 'graded'
-                    ? tone
+                    ? displayNote(tone)
                     : '?'
-                  : tone}
+                  : displayNote(tone)}
               </span>
             ))}
           </div>
@@ -127,7 +129,7 @@ export default function TriadTrainer() {
           <div className="tone-slots">
             {round.tones.map((tone, i) => (
               <span key={i} className="tone-slot hidden-tone">
-                {phase === 'graded' ? tone : '?'}
+                {phase === 'graded' ? displayNote(tone) : '?'}
               </span>
             ))}
           </div>
@@ -167,15 +169,15 @@ export default function TriadTrainer() {
           role="status"
         >
           {correct ? (
-            <>✓ Correct! {chordName} is <strong>{round.tones.join(' – ')}</strong>.</>
+            <>✓ Correct! {chordName} is <strong>{tonesDisplay}</strong>.</>
           ) : (
             <>
               ✗ Not quite. {chordName} is{' '}
-              <strong>{round.tones.join(' – ')}</strong>
+              <strong>{tonesDisplay}</strong>
               {mode === 'easy' && (
                 <>
                   {' '}— the missing tone was{' '}
-                  <strong>{round.tones[round.hiddenIndex]}</strong>.
+                  <strong>{displayNote(round.tones[round.hiddenIndex])}</strong>.
                 </>
               )}
             </>

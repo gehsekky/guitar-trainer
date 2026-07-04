@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import Fretboard, { type FretboardMarker } from './Fretboard';
 import NotePicker from './NotePicker';
-import { FRET_COUNT, STRINGS, noteAt, randomInt, type Note } from '../music';
+import {
+  FRET_COUNT,
+  STRINGS,
+  displayNote,
+  noteAt,
+  randomInt,
+  type Note,
+} from '../music';
 
 interface Round {
   marker: FretboardMarker;
@@ -73,9 +80,9 @@ export default function NeckTrainer() {
           role="status"
         >
           {correct ? (
-            <>✓ Correct! That note is <strong>{round.answer}</strong>.</>
+            <>✓ Correct! That note is <strong>{displayNote(round.answer)}</strong>.</>
           ) : (
-            <>✗ Not quite. The correct answer is <strong>{round.answer}</strong>.</>
+            <>✗ Not quite. The correct answer is <strong>{displayNote(round.answer)}</strong>.</>
           )}
         </div>
       )}
