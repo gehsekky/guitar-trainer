@@ -1,32 +1,46 @@
-# React + TypeScript + Vite
+# 🎸 Guitar Trainer
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A browser-based practice app for guitarists to drill fretboard knowledge,
+music theory, and ear training. Built with React + Vite + TypeScript, with no
+backend — all logic runs client-side and preferences persist in
+`localStorage`.
 
-Currently, two official plugins are available:
+## Trainers
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Neck Notes** — a position is marked on an SVG fretboard; name the note.
+- **Chord Triads** — identify triad tones.
+  - *Easy:* major/minor triad with one tone hidden — pick the missing note.
+  - *Hard:* all four qualities (major, minor, diminished, augmented) with all
+    three tones hidden — pick them all.
+- **Sheet Music** — read a note on a treble staff (with key signature, ledger
+  lines, and accidentals).
+  - *Easy:* key signature drawn and named; quarter notes.
+  - *Hard:* key signature only (infer the key) and identify the note duration.
+- **Scales** — spell major and natural-minor scales.
+  - *Easy:* major only, with a W–W–H–W–W–W–H cheat sheet and one degree hidden.
+  - *Hard:* major or minor, no cheat sheet, all seven notes hidden.
+- **Scale Degrees** — name the note for a functional scale degree (tonic,
+  dominant, leading tone, …), with a description of each degree's harmonic role.
+- **Ear Training** — hear a tonic then an interval and identify it by ear,
+  using the Web Audio API. Key can be random or fixed.
 
-## React Compiler
+Accidentals are shown with both enharmonic spellings (e.g. A♯/B♭).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev      # start the dev server
+npm run build    # type-check and build for production
+npm run preview  # preview the production build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Tech
+
+- React 19 + TypeScript
+- Vite
+- Web Audio API for tone generation
+- Inline SVG for the fretboard and musical staff
+
+No external UI or music-theory libraries — the theory (scales, triads,
+intervals, key signatures) and rendering are implemented from scratch.
