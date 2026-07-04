@@ -4,9 +4,10 @@ import TriadTrainer from './components/TriadTrainer';
 import SheetTrainer from './components/SheetTrainer';
 import ScaleTrainer from './components/ScaleTrainer';
 import EarTrainer from './components/EarTrainer';
+import ScaleDegreeTrainer from './components/ScaleDegreeTrainer';
 import './App.css';
 
-type Tab = 'neck' | 'triad' | 'sheet' | 'scale' | 'ear';
+type Tab = 'neck' | 'triad' | 'sheet' | 'scale' | 'degree' | 'ear';
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('neck');
@@ -55,6 +56,15 @@ export default function App() {
           <button
             type="button"
             role="tab"
+            aria-selected={tab === 'degree'}
+            className={tab === 'degree' ? 'tab active' : 'tab'}
+            onClick={() => setTab('degree')}
+          >
+            Scale Degrees
+          </button>
+          <button
+            type="button"
+            role="tab"
             aria-selected={tab === 'ear'}
             className={tab === 'ear' ? 'tab active' : 'tab'}
             onClick={() => setTab('ear')}
@@ -69,6 +79,7 @@ export default function App() {
         {tab === 'triad' && <TriadTrainer />}
         {tab === 'sheet' && <SheetTrainer />}
         {tab === 'scale' && <ScaleTrainer />}
+        {tab === 'degree' && <ScaleDegreeTrainer />}
         {tab === 'ear' && <EarTrainer />}
       </main>
     </div>

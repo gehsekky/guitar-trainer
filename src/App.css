@@ -344,6 +344,13 @@
 
 /* ---- Scale trainer ---- */
 
+.degree-name {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: capitalize;
+}
+
 .cheat-sheet {
   font-family: monospace;
   font-size: 1.1rem;

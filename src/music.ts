@@ -152,6 +152,31 @@ export function scaleNotes(root: Note, type: ScaleType): Note[] {
   return SCALE_INTERVALS[type].map((i) => CHROMATIC[(r + i) % 12]);
 }
 
+// Functional names for each scale degree (index 0 = degree 1 = tonic).
+// Degrees 1-6 share names across qualities; the 7th differs: a half-step
+// below the tonic is the "leading tone" (major), a whole-step below is
+// the "subtonic" (natural minor).
+export const DEGREE_NAMES: Record<ScaleType, string[]> = {
+  major: [
+    'tonic',
+    'supertonic',
+    'mediant',
+    'subdominant',
+    'dominant',
+    'submediant',
+    'leading tone',
+  ],
+  minor: [
+    'tonic',
+    'supertonic',
+    'mediant',
+    'subdominant',
+    'dominant',
+    'submediant',
+    'subtonic',
+  ],
+};
+
 // ---- Random helpers -----------------------------------------------------
 
 export function randomInt(maxExclusive: number): number {
