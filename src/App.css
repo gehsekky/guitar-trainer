@@ -259,6 +259,26 @@
   color: var(--muted);
 }
 
+/* ---- Scale trainer ---- */
+
+.cheat-sheet {
+  font-family: monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.scale-slots {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.scale-slots .tone-slot {
+  min-width: 2.5rem;
+  padding: 0.4rem 0.5rem;
+  font-size: 1.05rem;
+}
+
 /* ---- Sheet music trainer ---- */
 
 .key-label {

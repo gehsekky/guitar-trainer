@@ -2,9 +2,10 @@ import { useState } from 'react';
 import NeckTrainer from './components/NeckTrainer';
 import TriadTrainer from './components/TriadTrainer';
 import SheetTrainer from './components/SheetTrainer';
+import ScaleTrainer from './components/ScaleTrainer';
 import './App.css';
 
-type Tab = 'neck' | 'triad' | 'sheet';
+type Tab = 'neck' | 'triad' | 'sheet' | 'scale';
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('neck');
@@ -41,6 +42,15 @@ export default function App() {
           >
             Sheet Music
           </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tab === 'scale'}
+            className={tab === 'scale' ? 'tab active' : 'tab'}
+            onClick={() => setTab('scale')}
+          >
+            Scales
+          </button>
         </nav>
       </header>
 
@@ -48,6 +58,7 @@ export default function App() {
         {tab === 'neck' && <NeckTrainer />}
         {tab === 'triad' && <TriadTrainer />}
         {tab === 'sheet' && <SheetTrainer />}
+        {tab === 'scale' && <ScaleTrainer />}
       </main>
     </div>
   );

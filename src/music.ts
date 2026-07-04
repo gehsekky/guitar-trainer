@@ -104,6 +104,26 @@ export function triadNotes(root: Note, quality: Quality): [Note, Note, Note] {
   ];
 }
 
+// ---- Scales --------------------------------------------------------------
+
+export type ScaleType = 'major' | 'minor';
+
+// Semitone offsets from the root for each scale degree.
+// Major:         W-W-H-W-W-W-H
+// Natural minor: W-H-W-W-H-W-W
+export const SCALE_INTERVALS: Record<ScaleType, number[]> = {
+  major: [0, 2, 4, 5, 7, 9, 11],
+  minor: [0, 2, 3, 5, 7, 8, 10],
+};
+
+export const MAJOR_SCALE_PATTERN = ['W', 'W', 'H', 'W', 'W', 'W', 'H'];
+
+/** The seven notes of a scale, in degree order starting from the root. */
+export function scaleNotes(root: Note, type: ScaleType): Note[] {
+  const r = NOTE_INDEX[root];
+  return SCALE_INTERVALS[type].map((i) => CHROMATIC[(r + i) % 12]);
+}
+
 // ---- Random helpers -----------------------------------------------------
 
 export function randomInt(maxExclusive: number): number {
