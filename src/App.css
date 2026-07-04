@@ -1,0 +1,260 @@
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.app-header h1 {
+  font-size: 1.5rem;
+}
+
+/* ---- Tabs ---- */
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ---- Trainer layout ---- */
+
+.trainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.instructions {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ---- Fretboard ---- */
+
+.fretboard-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.fb-wood {
+  fill: var(--wood);
+}
+
+.fb-nut {
+  fill: #e8dcc8;
+}
+
+.fb-fret {
+  stroke: #c9c2b4;
+  stroke-width: 2;
+}
+
+.fb-inlay {
+  fill: #e8dcc8;
+  opacity: 0.55;
+}
+
+.fb-string {
+  stroke: #d8d3c8;
+}
+
+.fb-label {
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--text);
+  text-anchor: middle;
+}
+
+.fb-fretnum {
+  font-size: 11px;
+  fill: var(--muted);
+  text-anchor: middle;
+}
+
+.fb-marker {
+  fill: var(--accent);
+}
+
+.fb-marker-ring {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+/* ---- Note picker ---- */
+
+.note-picker {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(48px, 1fr));
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 480px;
+}
+
+@media (max-width: 480px) {
+  .note-picker {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.note-btn {
+  padding: 0.6rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.1s, border-color 0.1s;
+}
+
+.note-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.note-btn.selected {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.note-btn:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.note-btn.correct {
+  background: var(--success-bg);
+  border-color: var(--success-text);
+  color: var(--success-text);
+  opacity: 1;
+}
+
+.note-btn.wrong {
+  background: var(--failure-bg);
+  border-color: var(--failure-text);
+  color: var(--failure-text);
+  opacity: 1;
+}
+
+/* ---- Buttons & result ---- */
+
+.primary-btn {
+  padding: 0.6rem 2.5rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.primary-btn:hover:not(:disabled) {
+  background: var(--accent-dark);
+}
+
+.primary-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.result {
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 1.05rem;
+}
+
+.result.success {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.result.failure {
+  background: var(--failure-bg);
+  color: var(--failure-text);
+}
+
+/* ---- Triad trainer ---- */
+
+.mode-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.mode-btn {
+  padding: 0.4rem 1.5rem;
+  border: none;
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.mode-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.chord-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chord-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.tone-slots {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.tone-slot {
+  min-width: 3rem;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  background: var(--bg);
+}
+
+.tone-slot.hidden-tone {
+  border-style: dashed;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pick-count {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
