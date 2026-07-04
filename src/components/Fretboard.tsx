@@ -11,14 +11,19 @@ interface FretboardProps {
 
 // SVG layout constants
 const NUT_X = 44;
-const FRET_SPACING = 62;
+const FRET_SPACING = 38;
 const STRING_SPACING = 26;
 const TOP = 24;
 const BOTTOM = TOP + STRING_SPACING * (STRINGS.length - 1);
 const WIDTH = NUT_X + FRET_SPACING * FRET_COUNT + 16;
 const HEIGHT = BOTTOM + 40;
 
-const INLAY_FRETS = [3, 5, 7, 9];
+const ALL_FRETS = Array.from({ length: FRET_COUNT }, (_, i) => i + 1);
+// Standard side/face inlays repeat every octave: single dots at 3/5/7/9,
+// a double dot at the 12th (and 24th).
+const SINGLE_INLAYS = ALL_FRETS.filter((f) => [3, 5, 7, 9].includes(f % 12));
+const DOUBLE_INLAYS = ALL_FRETS.filter((f) => f % 12 === 0);
+const MID_Y = (TOP + BOTTOM) / 2;
 
 /** Center x of a fret slot (where a finger would go); fret 0 sits left of the nut. */
 function fretX(fret: number): number {
@@ -67,29 +72,33 @@ export default function Fretboard({ marker }: FretboardProps) {
           />
         ))}
 
-        {/* Inlays */}
-        {INLAY_FRETS.map((f) => (
+        {/* Single inlays */}
+        {SINGLE_INLAYS.map((f) => (
           <circle
-            key={f}
+            key={`s${f}`}
             cx={NUT_X + FRET_SPACING * (f - 0.5)}
-            cy={(TOP + BOTTOM) / 2}
-            r={5}
+            cy={MID_Y}
+            r={4.5}
             className="fb-inlay"
           />
         ))}
-        {/* Double inlay at 12 */}
-        <circle
-          cx={NUT_X + FRET_SPACING * 11.5}
-          cy={(TOP + BOTTOM) / 2 - STRING_SPACING}
-          r={5}
-          className="fb-inlay"
-        />
-        <circle
-          cx={NUT_X + FRET_SPACING * 11.5}
-          cy={(TOP + BOTTOM) / 2 + STRING_SPACING}
-          r={5}
-          className="fb-inlay"
-        />
+        {/* Double (octave) inlays */}
+        {DOUBLE_INLAYS.map((f) => (
+          <g key={`d${f}`}>
+            <circle
+              cx={NUT_X + FRET_SPACING * (f - 0.5)}
+              cy={MID_Y - STRING_SPACING}
+              r={4.5}
+              className="fb-inlay"
+            />
+            <circle
+              cx={NUT_X + FRET_SPACING * (f - 0.5)}
+              cy={MID_Y + STRING_SPACING}
+              r={4.5}
+              className="fb-inlay"
+            />
+          </g>
+        ))}
 
         {/* Strings */}
         {STRINGS.map((_s, i) => (

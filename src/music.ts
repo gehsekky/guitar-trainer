@@ -43,7 +43,7 @@ export const STRINGS: GuitarString[] = [
   { label: 'E', open: NOTE_INDEX['E'] }, // 1st (high E)
 ];
 
-export const FRET_COUNT = 12;
+export const FRET_COUNT = 22;
 
 /** Note sounding at a given string (index into STRINGS) and fret. */
 export function noteAt(stringIndex: number, fret: number): Note {
