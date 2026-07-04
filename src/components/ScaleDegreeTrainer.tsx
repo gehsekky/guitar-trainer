@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import NotePicker from './NotePicker';
 import {
+  DEGREE_INFO,
   DEGREE_NAMES,
   displayNote,
   pick,
@@ -72,6 +73,7 @@ export default function ScaleDegreeTrainer() {
 
   const scaleName = `${displayNote(round.root)} ${round.scaleType}`;
   const degreeName = DEGREE_NAMES[round.scaleType][round.degree];
+  const degreeInfo = DEGREE_INFO[round.scaleType][round.degree];
   const answerLine = (
     <>
       the <strong>{degreeName}</strong> of {scaleName} is{' '}
@@ -106,7 +108,10 @@ export default function ScaleDegreeTrainer() {
 
       <div className="chord-prompt">
         <div className="chord-name">{scaleName}</div>
-        <div className="degree-name">the {degreeName}</div>
+        <div className="degree-name">
+          the {degreeName}{' '}
+          <span className="degree-num">(degree {round.degree + 1})</span>
+        </div>
       </div>
 
       <NotePicker
@@ -139,6 +144,15 @@ export default function ScaleDegreeTrainer() {
           role="status"
         >
           {correct ? <>✓ Correct — {answerLine}.</> : <>✗ Not quite — {answerLine}.</>}
+        </div>
+      )}
+
+      {phase === 'graded' && (
+        <div className="degree-info">
+          <div className="degree-info-title">
+            {degreeName} <span className="degree-num">(degree {round.degree + 1})</span>
+          </div>
+          <p>{degreeInfo}</p>
         </div>
       )}
     </section>

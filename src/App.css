@@ -351,6 +351,35 @@
   text-transform: capitalize;
 }
 
+.degree-num {
+  text-transform: none;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.degree-info {
+  max-width: 480px;
+  padding: 0.9rem 1.15rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.degree-info-title {
+  font-weight: 700;
+  text-transform: capitalize;
+  margin-bottom: 0.35rem;
+}
+
+.degree-info p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
 .cheat-sheet {
   font-family: monospace;
   font-size: 1.1rem;
