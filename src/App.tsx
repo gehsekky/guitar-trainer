@@ -3,9 +3,10 @@ import NeckTrainer from './components/NeckTrainer';
 import TriadTrainer from './components/TriadTrainer';
 import SheetTrainer from './components/SheetTrainer';
 import ScaleTrainer from './components/ScaleTrainer';
+import EarTrainer from './components/EarTrainer';
 import './App.css';
 
-type Tab = 'neck' | 'triad' | 'sheet' | 'scale';
+type Tab = 'neck' | 'triad' | 'sheet' | 'scale' | 'ear';
 
 export default function App() {
   const [tab, setTab] = useState<Tab>('neck');
@@ -51,6 +52,15 @@ export default function App() {
           >
             Scales
           </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tab === 'ear'}
+            className={tab === 'ear' ? 'tab active' : 'tab'}
+            onClick={() => setTab('ear')}
+          >
+            Ear Training
+          </button>
         </nav>
       </header>
 
@@ -59,6 +69,7 @@ export default function App() {
         {tab === 'triad' && <TriadTrainer />}
         {tab === 'sheet' && <SheetTrainer />}
         {tab === 'scale' && <ScaleTrainer />}
+        {tab === 'ear' && <EarTrainer />}
       </main>
     </div>
   );

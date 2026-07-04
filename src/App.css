@@ -259,6 +259,68 @@
   color: var(--muted);
 }
 
+/* ---- Ear trainer ---- */
+
+.ear-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.secondary-btn {
+  padding: 0.6rem 2rem;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.secondary-btn:hover:not(:disabled) {
+  background: var(--accent);
+  color: #fff;
+}
+
+.secondary-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.interval-picker {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(90px, 1fr));
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 540px;
+}
+
+@media (max-width: 520px) {
+  .interval-picker {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.interval-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.5rem 0.25rem;
+}
+
+.interval-name {
+  font-size: 0.85rem;
+}
+
+.interval-short {
+  font-size: 0.75rem;
+  opacity: 0.65;
+  font-weight: 500;
+}
+
 /* ---- Scale trainer ---- */
 
 .cheat-sheet {
