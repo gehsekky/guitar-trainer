@@ -460,6 +460,10 @@
   letter-spacing: 0.02em;
 }
 
+.quality-chip {
+  text-transform: capitalize;
+}
+
 /* ---- Sheet music trainer ---- */
 
 .key-label {

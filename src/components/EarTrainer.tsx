@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import IntervalTrainer from './IntervalTrainer';
+import ChordEarTrainer from './ChordEarTrainer';
 import { CHROMATIC, displayNote, type Note } from '../music';
 
 // Sub-trainers within Ear Training. Future: 'note' (identify a played
-// note) and 'chord' (identify a played chord quality) slot in here.
-type EarGame = 'interval';
+// single note) slots in here alongside intervals and chords.
+type EarGame = 'interval' | 'chord';
 
 const GAMES: { id: EarGame; label: string }[] = [
   { id: 'interval', label: 'Intervals' },
+  { id: 'chord', label: 'Chords' },
 ];
 
 // Key selection is shared ear-trainer config: either a new random key
@@ -101,10 +103,16 @@ export default function EarTrainer() {
         )}
       </div>
 
+      {/* Remount on key-config change so the current round is regenerated
+          under the new constraint. */}
       {game === 'interval' && (
-        // Remount on key-config change so the current round is regenerated
-        // under the new constraint.
         <IntervalTrainer
+          key={activeFixedKey ?? 'random'}
+          fixedKey={activeFixedKey}
+        />
+      )}
+      {game === 'chord' && (
+        <ChordEarTrainer
           key={activeFixedKey ?? 'random'}
           fixedKey={activeFixedKey}
         />

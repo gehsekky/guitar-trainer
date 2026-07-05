@@ -104,6 +104,37 @@ export function triadNotes(root: Note, quality: Quality): [Note, Note, Note] {
   ];
 }
 
+// A general chord type (triad or seventh) as semitone offsets from the root.
+// Kept separate from the 3-note Quality system so seventh chords can be added
+// without affecting the triad-based trainers.
+export interface ChordType {
+  name: string;
+  intervals: number[];
+}
+
+export const EAR_CHORDS_EASY: ChordType[] = [
+  { name: 'major', intervals: [0, 4, 7] },
+  { name: 'minor', intervals: [0, 3, 7] },
+];
+
+export const EAR_CHORDS_HARD: ChordType[] = [
+  { name: 'major', intervals: [0, 4, 7] },
+  { name: 'minor', intervals: [0, 3, 7] },
+  { name: 'diminished', intervals: [0, 3, 6] },
+  { name: 'augmented', intervals: [0, 4, 8] },
+  { name: 'major 7th', intervals: [0, 4, 7, 11] },
+  { name: 'dominant 7th', intervals: [0, 4, 7, 10] },
+  { name: 'minor 7th', intervals: [0, 3, 7, 10] },
+  { name: 'half-diminished 7th', intervals: [0, 3, 6, 10] },
+  { name: 'diminished 7th', intervals: [0, 3, 6, 9] },
+];
+
+/** Notes of a chord from its root and interval offsets. */
+export function chordNotes(root: Note, intervals: number[]): Note[] {
+  const r = NOTE_INDEX[root];
+  return intervals.map((i) => CHROMATIC[(r + i) % 12]);
+}
+
 // ---- Intervals -----------------------------------------------------------
 
 export interface Interval {
